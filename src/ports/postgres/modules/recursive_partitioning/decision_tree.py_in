@@ -706,8 +706,8 @@ def _get_bins(schema_madlib, training_table_name, cat_features,
                        "the number of data records.")
         sample_size = n_bins * n_bins  # We use Spark's value here
         # FIXME Hard coded number
-        if sample_size < 10000:
-            sample_size = 10000
+        # if sample_size < 10000:
+        #     sample_size = 10000
 
         # Compute the percentage of the sample.
         # We sample a few more values to make sure we can get enough
@@ -718,7 +718,7 @@ def _get_bins(schema_madlib, training_table_name, cat_features,
         actual_sample_size = sample_size + 14 + sqrt(196 + 28 * sample_size)
         if actual_sample_size > n_rows:
             actual_sample_size = n_rows
-        percentage = actual_sample_size / n_rows
+        percentage = float(actual_sample_size) / float(n_rows)
 
         # For continuous variables, use one function to compute
         # the splits for all of them. Similar to the existing
@@ -911,8 +911,8 @@ def _get_bins_grps(
                        "the number of data records.")
         sample_size = n_bins * n_bins  # We use Spark's value here
         # FIXME Hard coded number
-        if sample_size < 10000:
-            sample_size = 10000
+        # if sample_size < 10000:
+        #      sample_size = 10000
 
         # Compute the percentage of the sample.
         # We sample a few more values to make sure we can get enough
